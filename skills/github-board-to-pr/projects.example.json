@@ -1,0 +1,55 @@
+[
+  {
+    "name": "yourapp",
+    "repo": "your-org/your-app",
+    "repoRoot": "C:/Users/you/Desktop/your-app",
+    "buildsRoot": "C:/Users/you/Desktop/your-app-builds",
+    "board": {
+      "owner": "your-github-user",
+      "number": 1
+    },
+    "baseBranch": "dev",
+    "status": {
+      "queue": "Needs Building",
+      "working": "In progress",
+      "review": "Needs Dev Review",
+      "clientReview": "Needs Client Review",
+      "blocked": "Todo"
+    },
+    "checks": [
+      "typecheck",
+      "lint"
+    ],
+    "authorityDocs": [
+      "CLAUDE.md"
+    ],
+    "projectRules": "A dense summary of the repo's CLAUDE.md non-negotiables.",
+    "hasCommitGates": false,
+    "devReview": {
+      "reviewRoot": "C:/Users/you/Desktop/your-app-builds/_review",
+      "pageUrl": null,
+      "devCommand": "npm run dev -- -p {port}",
+      "portRange": [
+        4100,
+        4199
+      ],
+      "login": "How to sign in (env var NAMES only) and where the sign-in code appears.",
+      "preview": "vercel-deployments",
+      "previewSharesProdDb": true,
+      "riskPaths": {
+        "migration": [
+          "supabase/migrations/"
+        ],
+        "access": [
+          "middleware.ts"
+        ],
+        "outbound": [
+          "lib/email"
+        ],
+        "cron": [
+          "app/api/cron/"
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,397 @@
+<title>Dev Review Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600&display=swap">
+<style>
+/* Layout: a work queue. Summary counts double as filters; sections follow the review order; each card expands in place. */
+:root {
+  --bg: #f5f6f4;
+  --surface: #ffffff;
+  --ink: #1b1f1d;
+  --muted: #5d6662;
+  --line: #dde1dd;
+  --accent: #1f5f5b;
+  --accent-soft: #e2eeec;
+  --blocked: #9a5b00;   --blocked-soft: #fbefd9;
+  --conflict: #b0361f;  --conflict-soft: #fbe5df;
+  --unfinished: #59606b; --unfinished-soft: #eceef1;
+  --eyes: #1d4f91;      --eyes-soft: #e1eaf7;
+  --ready: #23703a;     --ready-soft: #e0f1e4;
+  --shadow: 0 1px 2px rgb(20 30 25 / 6%);
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121514; --surface: #1a1e1d; --ink: #e6ebe8; --muted: #9aa5a0; --line: #2c3331;
+    --accent: #7cc4bc; --accent-soft: #1d3331;
+    --blocked: #e8b25a; --blocked-soft: #3a2c14;
+    --conflict: #f08a73; --conflict-soft: #3d1f18;
+    --unfinished: #aab2bd; --unfinished-soft: #262b31;
+    --eyes: #8db6ef; --eyes-soft: #1a2a40;
+    --ready: #7fcf93; --ready-soft: #18311f;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121514; --surface: #1a1e1d; --ink: #e6ebe8; --muted: #9aa5a0; --line: #2c3331;
+  --accent: #7cc4bc; --accent-soft: #1d3331;
+  --blocked: #e8b25a; --blocked-soft: #3a2c14;
+  --conflict: #f08a73; --conflict-soft: #3d1f18;
+  --unfinished: #aab2bd; --unfinished-soft: #262b31;
+  --eyes: #8db6ef; --eyes-soft: #1a2a40;
+  --ready: #7fcf93; --ready-soft: #18311f;
+  --shadow: none;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font: 15px/1.5 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 64px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; display: grid; gap: 22px; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1 { font: 600 30px/1.1 var(--f-display); letter-spacing: .01em; margin: 0; text-wrap: balance; }
+h2 { font: 600 19px/1.2 var(--f-display); margin: 0; display: flex; align-items: baseline; gap: 10px; text-wrap: balance; }
+h2 .n { font: 500 13px var(--f-mono); color: var(--muted); }
+.mono { font-family: var(--f-mono); font-size: 13px; }
+.muted { color: var(--muted); }
+
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 8px 20px; }
+header .meta { color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+
+.tally { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.tally button {
+  all: unset; cursor: pointer; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px 12px; display: grid; gap: 2px; box-shadow: var(--shadow); min-width: 0;
+}
+.tally button[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.tally .num { font: 600 26px/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.tally .lbl { font-size: 12.5px; color: var(--muted); }
+.tally [data-b="blocked"] .num { color: var(--blocked); }
+.tally [data-b="conflict"] .num { color: var(--conflict); }
+.tally [data-b="unfinished"] .num { color: var(--unfinished); }
+.tally [data-b="eyes"] .num { color: var(--eyes); }
+.tally [data-b="ready"] .num { color: var(--ready); }
+@media (max-width: 720px) { .tally { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.next {
+  background: var(--accent-soft); border-radius: 8px; padding: 12px 14px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
+}
+.next b { font-weight: 600; }
+.copy {
+  all: unset; cursor: pointer; font: 500 12.5px var(--f-mono); border: 1px solid var(--accent);
+  color: var(--accent); border-radius: 5px; padding: 2px 8px; white-space: nowrap;
+}
+.copy:hover { background: var(--surface); }
+
+section { display: grid; gap: 8px; }
+section > p { margin: -2px 0 2px; color: var(--muted); font-size: 13.5px; }
+
+details.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow);
+  border-left: 4px solid var(--stripe, var(--line));
+}
+details.card[data-b="blocked"] { --stripe: var(--blocked); }
+details.card[data-b="conflict"] { --stripe: var(--conflict); }
+details.card[data-b="unfinished"] { --stripe: var(--unfinished); }
+details.card[data-b="eyes"] { --stripe: var(--eyes); }
+details.card[data-b="ready"] { --stripe: var(--ready); }
+summary {
+  list-style: none; cursor: pointer; padding: 11px 14px; display: grid;
+  grid-template-columns: minmax(0, 1fr) auto; gap: 4px 14px; align-items: center;
+}
+summary::-webkit-details-marker { display: none; }
+.title { font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.refs { font: 13px var(--f-mono); color: var(--muted); white-space: nowrap; }
+.chips { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; }
+.chip {
+  font-size: 12px; line-height: 1; padding: 4px 7px; border-radius: 4px;
+  background: var(--unfinished-soft); color: var(--ink); white-space: nowrap;
+}
+.chip.risk { background: var(--conflict-soft); color: var(--conflict); font-weight: 500; }
+.chip.setup { background: var(--accent-soft); color: var(--accent); }
+.chip.good { background: var(--ready-soft); color: var(--ready); }
+.chip.warn { background: var(--blocked-soft); color: var(--blocked); }
+.chip.dec { font-weight: 600; outline: 1px solid currentColor; }
+.chip.dec.ready-to-merge { background: var(--ready-soft); color: var(--ready); }
+.chip.dec.changes-requested { background: var(--blocked-soft); color: var(--blocked); }
+.chip.dec.parked { background: var(--unfinished-soft); color: var(--unfinished); }
+
+.body { border-top: 1px solid var(--line); padding: 14px; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 18px; }
+.body.noshots { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 760px) { .body { grid-template-columns: minmax(0, 1fr); } }
+.facts { display: grid; gap: 12px; min-width: 0; }
+.fact h3 { margin: 0 0 3px; font: 600 11.5px var(--f-body); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.fact p, .fact ul, .fact ol { margin: 0; }
+.fact ul, .fact ol { padding-left: 20px; display: grid; gap: 2px; }
+.question { background: var(--blocked-soft); border-radius: 6px; padding: 10px 12px; }
+.alert { background: var(--conflict-soft); border-radius: 6px; padding: 10px 12px; }
+.where { font: 13px var(--f-mono); overflow-wrap: anywhere; }
+
+.shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; align-content: start; min-width: 0; }
+.shots figure { margin: 0; display: grid; gap: 4px; }
+.shots button { all: unset; cursor: zoom-in; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--bg); display: block; }
+.shots img { display: block; width: 100%; max-width: 100%; height: 150px; object-fit: cover; object-position: top; }
+.shots figcaption { font-size: 12px; color: var(--muted); }
+.noshot { align-self: start; font-size: 13px; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 12px; }
+
+.empty { background: var(--surface); border: 1px dashed var(--line); border-radius: 8px; padding: 28px; text-align: center; color: var(--muted); }
+footer { color: var(--muted); font-size: 12.5px; }
+
+dialog { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1400px); }
+dialog::backdrop { background: rgb(0 0 0 / 72%); }
+dialog img { display: block; max-width: 100%; max-height: 86vh; border-radius: 6px; }
+dialog p { color: #fff; margin: 8px 0 0; font-size: 13px; }
+@media (prefers-reduced-motion: no-preference) { details.card > .body { animation: open .14s ease-out; } }
+@keyframes open { from { opacity: .4; } to { opacity: 1; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Dev Review Desk</h1>
+      <div class="meta" id="meta"></div>
+    </div>
+  </header>
+  <div class="tally" id="tally" role="group" aria-label="Filter by bucket"></div>
+  <div class="next" id="next" hidden></div>
+  <main id="sections" style="display:grid;gap:26px"></main>
+  <footer id="foot"></footer>
+</div>
+<dialog id="zoom"><img alt=""><p></p></dialog>
+
+<script id="review-data" type="application/json">__REVIEW_DATA__</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById("review-data").textContent);
+  var cards = data.cards || [];
+  var ORDER = ["blocked", "conflict", "eyes", "ready", "unfinished"];
+  var NAMES = {
+    blocked: ["Blocked", "Questions only you can answer. Answers unblock the next build run."],
+    conflict: ["Conflicts", "Merge conflicts, overlapping PRs, or a PR whose card is in the wrong column."],
+    eyes: ["Needs your eyes", "Approved by the agent reviewer, but it touches something risky."],
+    ready: ["Ready, low risk", "Approved, no risky areas, screenshots attached. Quick looks."],
+    unfinished: ["Not finished", "Draft, failing checks, or open findings. Read what is missing."]
+  };
+  var SETUP = {
+    screenshots: "Review from screenshots",
+    preview: "Review on the preview link",
+    local: "Review on a local server",
+    migration: "Has a database change",
+    backend: "Backend, check the result screen",
+    diff: "No screen, code walk-through"
+  };
+  var RISK = { migration: "Migration", money: "Money", auth: "Login", access: "Access rules", outbound: "Sends to people", cron: "Scheduled job", webhook: "Webhook", "data-delete": "Deletes data" };
+  var DEC = { "ready-to-merge": "Ready to merge", "changes-requested": "Sent back", parked: "Parked" };
+  var filter = null;
+  try { filter = localStorage.getItem("devreview-filter") || null; } catch (e) {}
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function link(href, text) { var a = el("a", null, text); a.href = href; a.target = "_blank"; a.rel = "noopener"; return a; }
+  function ago(iso) {
+    if (!iso) return "";
+    var d = new Date(iso), s = (Date.now() - d) / 1000;
+    if (isNaN(s)) return "";
+    if (s < 3600) return Math.max(1, Math.round(s / 60)) + " min ago";
+    if (s < 86400) return Math.round(s / 3600) + " h ago";
+    return Math.round(s / 86400) + " d ago";
+  }
+  function fmt(iso) {
+    var d = new Date(iso);
+    return isNaN(d) ? "" : d.toLocaleString(undefined, { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  }
+  function copyBtn(text) {
+    var b = el("button", "copy", text);
+    b.type = "button";
+    b.title = "Copy, then paste in the Claude chat";
+    b.addEventListener("click", function (ev) {
+      ev.preventDefault(); ev.stopPropagation();
+      var done = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = text; }, 1400); };
+      try { navigator.clipboard.writeText(text).then(done, function () { selectText(b); }); } catch (e) { selectText(b); }
+    });
+    return b;
+  }
+  function selectText(node) { var r = document.createRange(); r.selectNodeContents(node); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  function cmd(c) { return c.pr ? "review #" + c.pr : "review #" + c.issue; }
+
+  // Header
+  var meta = document.getElementById("meta");
+  meta.appendChild(el("span", null, data.project || ""));
+  if (data.generatedAt) meta.appendChild(el("span", null, "Updated " + fmt(data.generatedAt)));
+  if (data.boardUrl) meta.appendChild(link(data.boardUrl, "Open the board"));
+
+  // Tally
+  var tally = document.getElementById("tally");
+  function tallyBtn(key, label, n) {
+    var b = el("button"); b.type = "button"; b.dataset.b = key || "all";
+    b.setAttribute("aria-pressed", String((filter || null) === key));
+    b.appendChild(el("span", "num", String(n)));
+    b.appendChild(el("span", "lbl", label));
+    b.addEventListener("click", function () {
+      filter = filter === key ? null : key;
+      try { filter ? localStorage.setItem("devreview-filter", filter) : localStorage.removeItem("devreview-filter"); } catch (e) {}
+      render();
+    });
+    return b;
+  }
+
+  // Up next
+  var byKey = {};
+  cards.forEach(function (c) { byKey[c.key] = c; });
+  var queue = (data.suggested || []).map(function (k) { return byKey[k]; }).filter(function (c) { return c && !c.decision; });
+  var nx = document.getElementById("next");
+  if (queue.length) {
+    var c0 = queue[0];
+    nx.hidden = false;
+    nx.appendChild(el("span", null, "Up next:"));
+    var t = el("b", null, c0.title); nx.appendChild(t);
+    nx.appendChild(el("span", "muted", NAMES[c0.bucket][0] + (c0.risk && c0.risk.length ? ", " + c0.risk.map(function (r) { return RISK[r] || r; }).join(", ") : "")));
+    nx.appendChild(copyBtn(cmd(c0)));
+    nx.appendChild(el("span", "muted", queue.length - 1 + " more after this"));
+  }
+
+  function chipsFor(c) {
+    var w = el("div", "chips");
+    if (c.decision) w.appendChild(el("span", "chip dec " + c.decision, DEC[c.decision] || c.decision));
+    (c.risk || []).forEach(function (r) { w.appendChild(el("span", "chip risk", RISK[r] || r)); });
+    if (c.setup) w.appendChild(el("span", "chip setup", SETUP[c.setup] || c.setup));
+    var v = c.reviewer && c.reviewer.verdict;
+    if (v === "approve") w.appendChild(el("span", "chip good", "Agent review: approved"));
+    else if (v === "changes") w.appendChild(el("span", "chip warn", "Agent review: changes asked"));
+    if (c.ci === "failing") w.appendChild(el("span", "chip risk", "Checks failing"));
+    else if (c.ci === "pending") w.appendChild(el("span", "chip", "Checks running"));
+    if (c.draft) w.appendChild(el("span", "chip", "Draft PR"));
+    if (c.openItems && c.openItems.length) w.appendChild(el("span", "chip", c.openItems.length + " open item" + (c.openItems.length > 1 ? "s" : "")));
+    if (c.size) w.appendChild(el("span", "chip mono", c.size.files + " files, +" + c.size.additions + " −" + c.size.deletions));
+    if (c.updatedAt) w.appendChild(el("span", "chip", "Updated " + ago(c.updatedAt)));
+    return w;
+  }
+  function fact(title, content) {
+    var f = el("div", "fact");
+    f.appendChild(el("h3", null, title));
+    f.appendChild(content);
+    return f;
+  }
+  function list(items, ordered) {
+    var l = el(ordered ? "ol" : "ul");
+    items.forEach(function (i) { l.appendChild(el("li", null, i)); });
+    return l;
+  }
+  var zoom = document.getElementById("zoom");
+  zoom.addEventListener("click", function () { zoom.close(); });
+
+  function cardEl(c) {
+    var d = el("details", "card"); d.dataset.b = c.bucket; d.id = "card-" + c.key;
+    var s = el("summary");
+    s.appendChild(el("span", "title", c.title));
+    var refs = el("span", "refs");
+    if (c.issue) { refs.appendChild(c.issueUrl ? link(c.issueUrl, "#" + c.issue) : el("span", null, "#" + c.issue)); }
+    if (c.pr) { refs.appendChild(document.createTextNode(c.issue ? "  " : "")); refs.appendChild(c.prUrl ? link(c.prUrl, "PR " + c.pr) : el("span", null, "PR " + c.pr)); }
+    s.appendChild(refs);
+    s.appendChild(chipsFor(c));
+    d.appendChild(s);
+
+    var shots = c.screenshots || [];
+    var body = el("div", "body" + (shots.length || c.bucket !== "blocked" ? "" : " noshots"));
+    var facts = el("div", "facts");
+    if (c.blockedQuestion) facts.appendChild(fact("Question for you", el("p", "question", c.blockedQuestion)));
+    if (c.conflict) facts.appendChild(fact("Conflict", el("p", "alert", c.conflict)));
+    if (c.asked) facts.appendChild(fact("The card asked for", el("p", null, c.asked)));
+    if (c.built && c.built.length) facts.appendChild(fact("What got built", list(c.built)));
+    if (c.riskNotes && c.riskNotes.length) facts.appendChild(fact("Why it needs your eyes", list(c.riskNotes)));
+    if (c.check && (c.check.url || (c.check.steps && c.check.steps.length))) {
+      var w = el("div");
+      if (c.check.url) {
+        var p = el("p", "where");
+        p.appendChild(document.createTextNode(c.check.url));
+        if (c.check.record) p.appendChild(el("span", "muted", "  on " + c.check.record));
+        w.appendChild(p);
+      }
+      if (c.check.steps && c.check.steps.length) w.appendChild(list(c.check.steps, true));
+      facts.appendChild(fact("Where to check it", w));
+    }
+    if (c.previewUrl) {
+      var pv = el("p"); pv.appendChild(link(c.previewUrl, "Open the preview"));
+      pv.appendChild(el("span", "muted", "  Saving on the preview changes live data."));
+      facts.appendChild(fact("Preview", pv));
+    }
+    if (c.openItems && c.openItems.length) facts.appendChild(fact("Open items", list(c.openItems)));
+    if (c.reviewer && c.reviewer.summary) facts.appendChild(fact("Agent reviewer", el("p", null, c.reviewer.summary + (c.reviewer.blocking || c.reviewer.shouldFix ? " (" + (c.reviewer.blocking || 0) + " blocking, " + (c.reviewer.shouldFix || 0) + " should fix)" : ""))));
+    var rel = [];
+    if (c.dependsOn && c.dependsOn.length) rel.push("Merge after: " + c.dependsOn.map(function (n) { return "#" + n; }).join(", "));
+    if (c.overlaps && c.overlaps.length) rel.push("Same files as: " + c.overlaps.map(function (n) { return "#" + n; }).join(", "));
+    if (rel.length) facts.appendChild(fact("Merge order", list(rel)));
+    if (c.decisionNote) facts.appendChild(fact("Your decision", el("p", null, c.decisionNote)));
+    var act = el("p"); act.appendChild(copyBtn(cmd(c))); act.appendChild(el("span", "muted", "  paste in the Claude chat to start this review"));
+    facts.appendChild(act);
+    body.appendChild(facts);
+
+    if (shots.length) {
+      var g = el("div", "shots");
+      shots.forEach(function (sh) {
+        var f = el("figure"), b = el("button"), img = el("img");
+        b.type = "button"; img.src = sh.url; img.alt = sh.caption || "Screenshot"; img.loading = "lazy";
+        b.appendChild(img);
+        b.addEventListener("click", function () { zoom.querySelector("img").src = sh.url; zoom.querySelector("p").textContent = sh.caption || ""; zoom.showModal(); });
+        f.appendChild(b);
+        f.appendChild(el("figcaption", null, (sh.width === "phone" ? "Phone: " : sh.width === "desktop" ? "Desktop: " : "") + (sh.caption || "")));
+        g.appendChild(f);
+      });
+      body.appendChild(g);
+    } else if (c.bucket !== "blocked") {
+      var why = c.visualCheck && c.visualCheck.indexOf("not-possible") === 0
+        ? "No screenshots. The builder could not check it on screen: " + c.visualCheck.replace(/^not-possible:\s*/, "")
+        : c.packSource === "pr" ? "No screenshots from the builder (this PR was made before review packs existed)." : "No screenshots.";
+      body.appendChild(el("div", "noshot", why));
+    }
+    d.appendChild(body);
+    return d;
+  }
+
+  function render() {
+    tally.textContent = "";
+    tally.appendChild(tallyBtn(null, "All waiting", cards.length));
+    ORDER.forEach(function (b) { tally.appendChild(tallyBtn(b, NAMES[b][0], cards.filter(function (c) { return c.bucket === b; }).length)); });
+    var root = document.getElementById("sections");
+    var open = {};
+    root.querySelectorAll("details[open]").forEach(function (n) { open[n.id] = true; });
+    root.textContent = "";
+    if (!cards.length) {
+      root.appendChild(el("div", "empty", "Nothing is waiting for review. Cards show up here when a build run moves them to Needs Dev Review."));
+      return;
+    }
+    var rank = {};
+    (data.suggested || []).forEach(function (k, i) { rank[k] = i; });
+    ORDER.forEach(function (b) {
+      if (filter && filter !== b) return;
+      var group = cards.filter(function (c) { return c.bucket === b; });
+      if (!group.length) return;
+      group.sort(function (x, y) {
+        var dx = x.decision ? 1 : 0, dy = y.decision ? 1 : 0;
+        if (dx !== dy) return dx - dy;
+        return (rank[x.key] ?? 1e9) - (rank[y.key] ?? 1e9);
+      });
+      var sec = el("section");
+      var h = el("h2", null, NAMES[b][0]); h.appendChild(el("span", "n", String(group.length))); sec.appendChild(h);
+      sec.appendChild(el("p", null, NAMES[b][1]));
+      group.forEach(function (c) { var n = cardEl(c); if (open[n.id]) n.open = true; sec.appendChild(n); });
+      root.appendChild(sec);
+    });
+  }
+  render();
+  var decided = cards.filter(function (c) { return c.decision; }).length;
+  document.getElementById("foot").textContent = decided + " of " + cards.length + " decided. Approving marks a PR ready to merge; you merge it and move the card yourself.";
+})();
+</script>
