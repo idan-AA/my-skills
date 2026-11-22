@@ -24,20 +24,6 @@ const SKIP_NAMES = new Set([".env", ".env.local", "node_modules", ".DS_Store", "
 
 // Private details -> placeholders. Order matters (longer first).
 const REDACT = [
-  [/effi6060@gmail\.com/gi, "owner@example.com"],
-  [/effie?@(all)?automateanything\.(ai|com)/gi, "owner@example.com"],
-  [/idan@automateanything\.ai/gi, "owner@example.com"],
-  [/users\/idan-AA\/projects/g, "users/your-github-user/projects"],
-  [/120363194050948049/g, "120363000000000001"],
-  [/120363171743427809/g, "120363000000000002"],
-  [/Automate-Anything\/Taxace-NY/g, "your-org/your-app"],
-  [/Taxace-builds/g, "your-app-builds"],
-  [/Taxace-NY/g, "your-app"],
-  [/Taxace/g, "YourApp"],
-  [/taxace/g, "yourapp"],
-  [/Accutrust/gi, "Example Co"],
-  [/C:[\\/]+Users[\\/]+Idan/g, "C:/Users/you"],
-];
 const TEXT = /\.(md|mjs|js|cjs|ts|tsx|json|sql|html|css|ya?ml|txt|sh|ps1|py|toml)$/i;
 
 function skipped(rel, name) {
