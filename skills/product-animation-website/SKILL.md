@@ -1,6 +1,6 @@
 ---
 name: product-animation-website
-description: Build silent, looping animated product mockups for a website or landing page, prototype them on a Design canvas, and ship them into the real site's code (React, SSG) without hurting SEO, load or layout. Use when someone wants the screenshots or mockups on their site to come alive, wants an animated hero or feature demo, or says 'update the website' with animations. Read product-animation-core first.
+description: "Build silent, looping animated product mockups for a website or landing page, prototype them on a Design canvas, and ship them into the real site's code (React, SSG) without hurting SEO, load or layout. Use when someone wants the screenshots or mockups on their site to come alive, wants an animated hero or feature demo, or says 'update the website' with animations. Read product-animation-core first."
 ---
 
 # Product animation: website loops

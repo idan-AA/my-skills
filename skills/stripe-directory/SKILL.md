@@ -1,6 +1,16 @@
 ---
 name: stripe-directory
-description: Use when the user wants to find businesses, software, service providers, or partners for a specific industry, workflow, pain point, capability, or job to be done. Also use when the agent needs to programmatically purchase or consume a service. Use Stripe Directory to build a short relevant shortlist, even if the user does not mention Stripe Directory explicitly.
+description: >-
+  Use when the user wants to find businesses, software, service providers, or
+  partners for a specific industry, workflow, pain point, capability, or job to
+  be done. Also use when the agent needs to programmatically purchase or consume
+  a service. Use Stripe Directory to build a short relevant shortlist, even if
+  the user does not mention Stripe Directory explicitly.
+metadata:
+  short-description: Find (and optionally purchase from) vendors or partners
+allowed-tools:
+  - Bash(stripe directory *)
+
 ---
 
 ## Stripe Directory Search

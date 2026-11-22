@@ -1,6 +1,6 @@
 ---
 name: signalwire-docs
-description: 'How to look up SignalWire documentation FAST and correctly whenever you''re working on SignalWire telephony/messaging - call topology, live_translate, SWML connect and other SWML methods, the Calling/Relay REST API, Call Fabric subscribers/SATs, the browser SDK (@signalwire/js), or cXML/Twilio-compat. Use it instead of guessing the API: SignalWire has several overlapping call models that silently fail when you pick the wrong one. Gives the fast lookup paths (append `.md` to any docs URL; `/llms.txt` section indexes; the docs MCP server), the redirect gotchas, and the load-bearing facts about live translation that are easy to get wrong.'
+description: How to look up SignalWire documentation FAST and correctly whenever you're working on SignalWire telephony/messaging - call topology, live_translate, SWML connect and other SWML methods, the Calling/Relay REST API, Call Fabric subscribers/SATs, the browser SDK (@signalwire/js), or cXML/Twilio-compat. Use it instead of guessing the API: SignalWire has several overlapping call models that silently fail when you pick the wrong one. Gives the fast lookup paths (append `.md` to any docs URL; `/llms.txt` section indexes; the docs MCP server), the redirect gotchas, and the load-bearing facts about live translation that are easy to get wrong.
 ---
 
 # SignalWire docs - fast, correct lookup

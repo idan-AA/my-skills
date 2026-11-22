@@ -1,6 +1,7 @@
 ---
 name: ad-copy-generation
-description: The Ad Copy Generation skill produces high-performance responsive search ad (RSA) copy using AI-driven generation pipelines calibrated against millions of ad performance data points.
+description: >-
+  The Ad Copy Generation skill produces high-performance responsive search ad (RSA) copy using AI-driven generation pipelines calibrated against millions of ad performance data points.
 ---
 
 # Ad Copy Generation

@@ -1,7 +1,22 @@
 ---
 name: whapi
-description: 'WHAPI.cloud WhatsApp API guide for AI agents. Use this skill when building WhatsApp bots, automations, CRM integrations, or broadcast systems with WHAPI. Prevents the most common AI mistakes: wrong Chat ID format, wrong message type, polling instead of webhooks, and hallucinated parameters.'
+description: >
+  WHAPI.cloud WhatsApp API guide for AI agents. Use this skill when building
+  WhatsApp bots, automations, CRM integrations, or broadcast systems with WHAPI.
+  Prevents the most common AI mistakes: wrong Chat ID format, wrong message type,
+  polling instead of webhooks, and hallucinated parameters.
 license: MIT
+metadata:
+  author: whapi
+  version: "1.0.0"
+  organization: WHAPI.cloud
+  date: April 2026
+  abstract: >
+    Practical guide for AI agents working with the WHAPI WhatsApp API and its MCP
+    server. Covers Chat ID formats, message type selection, webhook setup, groups,
+    channels/newsletters, communities, and ready-made integration patterns. Each
+    reference file includes correct and incorrect examples to prevent hallucinations
+    and common mistakes.
 ---
 
 # WHAPI.cloud WhatsApp API - Agent Skill

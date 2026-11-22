@@ -1,6 +1,7 @@
 ---
 name: landing-page-audit
-description: The Landing Page Audit skill performs comprehensive evaluations of post-click experiences, combining technical performance analysis with conversion rate optimization (CRO) assessment.
+description: >-
+  The Landing Page Audit skill performs comprehensive evaluations of post-click experiences, combining technical performance analysis with conversion rate optimization (CRO) assessment.
 ---
 
 # Landing Page Audit

@@ -1,6 +1,6 @@
 ---
 name: standard-incident-management
-description: 'Standard 24 of the engineering standards library: incident management. Covers severity classification (SEV1 to SEV4) with response times, the detect, triage, respond, resolve, review workflow, the blameless postmortem template, the runbook template for critical services, status page rules, and internal, external and resolution communication templates. Read it WHEN responding to a production incident or outage, and BEFORE writing a runbook, a postmortem, an on-call process, or a status page update, and when the user says "production is down", "incident", "outage", "SEV1", "postmortem", "root cause analysis", "RCA", "runbook", "on-call", "status page", or "what do we tell customers".'
+description: "Standard 24 of the engineering standards library: incident management. Covers severity classification (SEV1 to SEV4) with response times, the detect, triage, respond, resolve, review workflow, the blameless postmortem template, the runbook template for critical services, status page rules, and internal, external and resolution communication templates. Read it WHEN responding to a production incident or outage, and BEFORE writing a runbook, a postmortem, an on-call process, or a status page update, and when the user says \"production is down\", \"incident\", \"outage\", \"SEV1\", \"postmortem\", \"root cause analysis\", \"RCA\", \"runbook\", \"on-call\", \"status page\", or \"what do we tell customers\"."
 ---
 
 # Incident Management and On-Call: when things break

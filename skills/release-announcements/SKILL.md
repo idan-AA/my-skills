@@ -1,6 +1,17 @@
 ---
 name: release-announcements
-description: 'How to prepare the monthly "What''s New" product-update email to the app''s users from an updates folder, and drop it into the admin email-blast system as a DRAFT the owner reviews and sends with one click. Also covers the sibling surface: the owner-approved What''s New posts that feed the in-app panel and the public changelog. Covers where updates live and how they are named, picking the cutoff, labelling by ship month, the voice, writing only the inner body so the branded layout wraps it, creating the draft, recording which updates were covered so nothing is announced twice, and the hand-off. The agent prepares, the owner sends: never send it yourself. Read it when the owner says "prepare the monthly update email", "write the what''s new email", "announce what shipped", "draft the release notes email", "what''s new posts", "update the changelog", or clicks a "Prepare monthly update (Copy for AI)" button in the admin tool.'
+description: >-
+  How to prepare the monthly "What's New" product-update email to the app's users from an
+  updates folder, and drop it into the admin email-blast system as a DRAFT the owner reviews and
+  sends with one click. Also covers the sibling surface: the owner-approved What's New posts that
+  feed the in-app panel and the public changelog. Covers where updates live and how they are
+  named, picking the cutoff, labelling by ship month, the voice, writing only the inner body so
+  the branded layout wraps it, creating the draft, recording which updates were covered so
+  nothing is announced twice, and the hand-off. The agent prepares, the owner sends: never send
+  it yourself. Read it when the owner says "prepare the monthly update email", "write the what's
+  new email", "announce what shipped", "draft the release notes email", "what's new posts",
+  "update the changelog", or clicks a "Prepare monthly update (Copy for AI)" button in the admin
+  tool.
 ---
 
 # Release announcements (monthly What's New email)

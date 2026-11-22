@@ -1,6 +1,6 @@
 ---
 name: standards-index
-description: 'The index of the engineering standards library: every numbered standard (00 through 39) with the skill that carries it and one line on when to read it, plus the cross-cutting non-negotiables that apply to every task. Read it at the START of a session, when you are not sure which standard applies to a task, before starting any new project or feature, and when the user says "follow the standards", "which standard covers this", "what are the rules for", "the standards library", "rules index", or names a standard by number (for example "standard 21" or "rule 38").'
+description: "The index of the engineering standards library: every numbered standard (00 through 39) with the skill that carries it and one line on when to read it, plus the cross-cutting non-negotiables that apply to every task. Read it at the START of a session, when you are not sure which standard applies to a task, before starting any new project or feature, and when the user says \"follow the standards\", \"which standard covers this\", \"what are the rules for\", \"the standards library\", \"rules index\", or names a standard by number (for example \"standard 21\" or \"rule 38\")."
 ---
 
 # Standards Index: start here

@@ -1,7 +1,7 @@
 # My skills
 
-Claude Code skills, one folder per skill under `skills/`. Each has a `SKILL.md` with a short description in its
-front matter and the full instructions below it.
+Claude Code skills, one folder per skill under `skills/`. Each has a `SKILL.md` with its full description (the
+text Claude uses to decide when to load the skill) in its front matter and the instructions below it.
 
 ## Use them
 

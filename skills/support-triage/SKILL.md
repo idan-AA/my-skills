@@ -1,6 +1,6 @@
 ---
 name: support-triage
-description: How to process ONE incoming customer support request end to end in a SaaS product - pull it, investigate against the customer's LIVE data and the LIVE code, cross-check the error/alert board, classify it, draft the reply in the house style, get the owner's approval, then send and close it yourself from a script. Read this the moment the owner says "check request
+description: How to process ONE incoming customer support request end to end in a SaaS product - pull it, investigate against the customer's LIVE data and the LIVE code, cross-check the error/alert board, classify it, draft the reply in the house style, get the owner's approval, then send and close it yourself from a script. Read this the moment the owner says "check request #N", pastes a request's "copy for AI" payload, forwards a "new support request" or "still waiting on a first reply" email, or says "process this request / support ticket / customer message", "triage support", "answer this customer", "reply to the customer", "handle this chat". Also read it before BUILDING a support inbox, a request board, a request-number scheme, a diagnostics bundle, or the get/reply/resolve scripts, because it carries the data-model decisions and every landmine that already bit. Use when the user mentions a customer request, support ticket, support chat, a requests board, a diagnostic bundle, a request number, unread replies, or a satisfaction survey.
 ---
 
 # Support Triage

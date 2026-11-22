@@ -1,6 +1,6 @@
 ---
 name: product-animation-core
-description: 'Shared method for animating real product screenshots or HTML mockups into short ''it''s working live'' stories: getting the exact source, writing the trigger, work, win story, the realism rules, the one-clock engine and the pattern library. Use it whenever someone wants a product screenshot, app mockup or UI to come alive, then continue with product-animation-website (silent looping mockups for a site) or product-animation-social-video (voiced, captioned MP4s for Reels, TikTok, Shorts, feed, LinkedIn).'
+description: "Shared method for animating real product screenshots or HTML mockups into short 'it's working live' stories: getting the exact source, writing the trigger, work, win story, the realism rules, the one-clock engine and the pattern library. Use it whenever someone wants a product screenshot, app mockup or UI to come alive, then continue with product-animation-website (silent looping mockups for a site) or product-animation-social-video (voiced, captioned MP4s for Reels, TikTok, Shorts, feed, LinkedIn)."
 ---
 
 # Product animation: the shared core

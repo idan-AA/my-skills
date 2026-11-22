@@ -1,6 +1,15 @@
 ---
 name: motion-dev-animations
 description: Creates 120fps GPU-accelerated animations with Motion.dev (Framer Motion successor) for React, Next.js, Svelte, and Astro projects. Use when user requests animation, motion, scroll effects, parallax, hero animations, gestures, drag interactions, spring physics, whileHover effects, whileInView animations, animated UI, micro-interactions, page transitions, or layout animations. Generates production TypeScript/JSX code with accessibility (prefers-reduced-motion) and performance validation (≥60fps). Supports entrance animations, gesture interactions (hover/tap/drag), scroll-based reveals, and layout transitions using spring physics and natural timing. Do NOT use for CSS-only transitions (use native CSS), static sites without JavaScript, Vue animations (use motion-v variant instead), or SVG/Canvas complex animations (GSAP better suited).
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+metadata:
+  version: "3.0.0"
+  author: "Motion Dev Standards"
+  tags: ["motion", "framer-motion", "animation", "react", "nextjs", "svelte", "astro", "gestures", "scroll", "parallax", "microinteractions", "spring-physics", "layout-animations"]
+  min_claude_version: "3.5"
+  created: "2025-11-07"
+  updated: "2025-11-08"
+  optimization: "Research-backed: imperative language, few-shot (3 examples), layered complexity, progressive loading"
 ---
 
 # Motion Dev Animations

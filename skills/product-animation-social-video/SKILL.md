@@ -1,6 +1,6 @@
 ---
 name: product-animation-social-video
-description: Turn a product screenshot or mockup story into a voiced, captioned social video (Reels, TikTok, Shorts, Instagram/Facebook feed, LinkedIn, YouTube) with a hook opening, a narrated product story, an end card, music and sound design, exported as MP4s in 9:16, 4:5, 1:1 and 16:9. Use when the video is built from the real product's screens (screenshots, HTML mockups, the app UI) rather than AI-generated footage; for films made from generated footage use ai-video-production. Read product-animation-core first.
+description: "Turn a product screenshot or mockup story into a voiced, captioned social video (Reels, TikTok, Shorts, Instagram/Facebook feed, LinkedIn, YouTube) with a hook opening, a narrated product story, an end card, music and sound design, exported as MP4s in 9:16, 4:5, 1:1 and 16:9. Use when the video is built from the real product's screens (screenshots, HTML mockups, the app UI) rather than AI-generated footage; for films made from generated footage use ai-video-production. Read product-animation-core first."
 ---
 
 # Product animation: social videos

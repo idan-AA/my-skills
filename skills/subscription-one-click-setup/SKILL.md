@@ -1,6 +1,15 @@
 ---
 name: subscription-one-click-setup
-description: How to let a user connect their Claude Pro/Max SUBSCRIPTION to a backend app with one button ("Sign in with Claude"), so the app runs on the user's own plan with no API key, exactly as Claude Code does. Read this BEFORE building any "sign in with Claude", BYOK subscription, or Claude-OAuth connect flow; before storing or refreshing a Claude OAuth token server-side; before adding multi-account switching or usage-limit rollover across Claude subscriptions; or when a subscription token fails with "OAuth access token has expired". Covers the public OAuth client, authorization-code + PKCE with the stateless-PKCE trick, the one-box paste that also accepts a setup-token and an API key, encrypted storage, refresh-at-call-time, the live model list, and the exact gotchas that cost days.
+description: >-
+  How to let a user connect their Claude Pro/Max SUBSCRIPTION to a backend app with one
+  button ("Sign in with Claude"), so the app runs on the user's own plan with no API key,
+  exactly as Claude Code does. Read this BEFORE building any "sign in with Claude", BYOK
+  subscription, or Claude-OAuth connect flow; before storing or refreshing a Claude OAuth
+  token server-side; before adding multi-account switching or usage-limit rollover across
+  Claude subscriptions; or when a subscription token fails with "OAuth access token has
+  expired". Covers the public OAuth client, authorization-code + PKCE with the stateless-PKCE
+  trick, the one-box paste that also accepts a setup-token and an API key, encrypted storage,
+  refresh-at-call-time, the live model list, and the exact gotchas that cost days.
 ---
 
 # Connect a Claude subscription to a backend with one button

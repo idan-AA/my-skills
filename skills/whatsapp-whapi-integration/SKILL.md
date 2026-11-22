@@ -1,6 +1,22 @@
 ---
 name: whatsapp-whapi-integration
-description: 'The owner''s production lessons for running WhatsApp on WHAPI.cloud (the paid, managed companion-device host) inside a multi-tenant app. This sits ON TOP of the vendor `whapi` skill (API reference, chat-id formats, send types): read that one for endpoints, read this one for how to wire the system and what breaks. Covers the pre-warmed channel pool claimed instantly at signup, QR and phone-code login, the per-channel provider column, the two unrelated WHAPI "balances" (partner wallet vs per-channel funded-until), the daily funding job and the two scary WHAPI emails, the balance callback, the outbound gate order with anti-block caps that apply ONLY to proactive sends, the unauthenticated inbound webhook with normalizer and dedupe, voice-note transcription, channel health, ban detection (a banned number still reports AUTH on plain /health), disconnect flap-damping, the cancel and grace lifecycle, and why you must keep your own message database.'
+description: >-
+  The owner's production lessons for running WhatsApp on WHAPI.cloud (the paid, managed
+  companion-device host) inside a multi-tenant app. This sits ON TOP of the vendor `whapi` skill
+  (API reference, chat-id formats, send types): read that one for endpoints, read this one for how
+  to wire the system and what breaks. Covers the pre-warmed channel pool claimed instantly at
+  signup, QR and phone-code login, the per-channel provider column, the two unrelated WHAPI
+  "balances" (partner wallet vs per-channel funded-until), the daily funding job and the two scary
+  WHAPI emails, the balance callback, the outbound gate order with anti-block caps that apply ONLY
+  to proactive sends, the unauthenticated inbound webhook with normalizer and dedupe, voice-note
+  transcription, channel health, ban detection (a banned number still reports AUTH on plain
+  /health), disconnect flap-damping, the cancel and grace lifecycle, and why you must keep your own
+  message database. Read it BEFORE building or touching anything WHAPI: connecting a number, the
+  inbox or AI reply path, reminders or campaigns over WhatsApp, channel funding, deleting a
+  channel, or a ban. Use when the user mentions WHAPI, a WhatsApp channel, the channel pool,
+  "expires in 3 days", WHAPI balance or wallet, a WhatsApp disconnect or ban, WhatsApp
+  Status/Stories, fetching WhatsApp history, "do WhatsApp messages need a database", or "why did
+  we get a WHAPI email".
 ---
 
 # WhatsApp via WHAPI (managed provider): production lessons

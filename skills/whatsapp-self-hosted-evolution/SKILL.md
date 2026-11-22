@@ -1,6 +1,22 @@
 ---
 name: whatsapp-self-hosted-evolution
-description: The complete, exact guide to connecting a product to WhatsApp through a SELF-HOSTED Evolution API stack (Evolution API on the Baileys library, acting as a WhatsApp linked device / companion device), with a real production implementation next to it in reference-impl. Covers the pinned Docker image and every environment variable, the dedicated service with its own Postgres and Redis, every Evolution REST call with real JSON bodies (create instance, QR, pairing code, connection state, send text / media / voice note, status, mark read, presence, fetch media, logout, delete, set proxy), the inbound WhatsApp webhook and its payloads, the normalizer, echo suppression, the 413 body-size fix, the 400-versus-404 media case, connection states, bans, session storage, the app-side tables, a go-live checklist, a test rig, build-time Baileys patches (the app-state resync loop fix, with its proof test), and every landmine hit in production. Read it BEFORE building or touching anything Evolution or Baileys.
+description: >-
+  The complete, exact guide to connecting a product to WhatsApp through a SELF-HOSTED Evolution
+  API stack (Evolution API on the Baileys library, acting as a WhatsApp linked device / companion
+  device), with a real production implementation next to it in reference-impl. Covers the pinned
+  Docker image and every environment variable, the dedicated service with its own Postgres and
+  Redis, every Evolution REST call with real JSON bodies (create instance, QR, pairing code,
+  connection state, send text / media / voice note, status, mark read, presence, fetch media,
+  logout, delete, set proxy), the inbound WhatsApp webhook and its payloads, the normalizer, echo
+  suppression, the 413 body-size fix, the 400-versus-404 media case, connection states, bans,
+  session storage, the app-side tables, a go-live checklist, a test rig, build-time Baileys
+  patches (the app-state resync loop fix, with its proof test), and every landmine hit in
+  production. Read it BEFORE building or touching anything Evolution or Baileys. Use when the
+  user mentions Evolution, Evolution API, Baileys, self-hosted WhatsApp, an Evolution instance,
+  QR, pairing code, linked device, companion device, WhatsApp webhook, "couldn't link device",
+  "Invalid proxy", QR re-scan after a deploy, messages.upsert, connection.update, fromMe echoes,
+  @lid or @s.whatsapp.net JIDs, findMessages, syncFullHistory, "do WhatsApp messages need a
+  database", or "our own WhatsApp, stop paying per channel".
 ---
 
 # WhatsApp via self-hosted Evolution API: the exact guide

@@ -1,6 +1,22 @@
 ---
 name: email-infrastructure
-description: The delivery architecture pattern for email in a SaaS app, AND the rules for building email HTML that actually renders in Gmail and Outlook (tables only, no SVG, no double quotes inside style attributes, equal-height cells, one restrained palette, a manage block, verified in a real inbox). Covers the two fundamentally separate channels (PLATFORM email from us to our users, staff and internal team through a transactional provider such as Resend; TENANT email from a customer business to its own customers through that business's own OAuth-connected mailbox), the single audit log every send must land in, the send-and-log wrapper, sender personas, one shared branded layout per channel, the template resolver with unfilled-placeholder guard, suppression lists, the provider event webhook, the auth-provider send-email hook (so signup and reset emails are yours, not the auth vendor's), the staged path for a new project (vendor built-in sender first, own transport later), and the admin surfaces that view sent mail.
+description: >-
+  The delivery architecture pattern for email in a SaaS app, AND the rules for building email HTML
+  that actually renders in Gmail and Outlook (tables only, no SVG, no double quotes inside style
+  attributes, equal-height cells, one restrained palette, a manage block, verified in a real
+  inbox). Covers the two fundamentally separate channels (PLATFORM email from us to our users,
+  staff and internal team through a transactional provider such as Resend; TENANT email from a
+  customer business to its own customers through that business's own OAuth-connected mailbox), the
+  single audit log every send must land in, the send-and-log wrapper, sender personas, one shared
+  branded layout per channel, the template resolver with unfilled-placeholder guard, suppression
+  lists, the provider event webhook, the auth-provider send-email hook (so signup and reset
+  emails are yours, not the auth vendor's), the staged path for a new project (vendor built-in
+  sender first, own transport later), and the admin surfaces that view sent mail. Read it BEFORE
+  writing, sending, logging, templating, designing or debugging any email, digest, report email or
+  notification email, and before assuming a send log exists. Use when the user mentions email, an
+  email template, email design, an email that looks broken or plain in Gmail, charts in an email,
+  Resend, SMTP, the send-email hook, auth emails, confirmation, password reset, OTP, magic link,
+  an email log, unsubscribe, bounces, email blasts, or "why didn't this email send or show up".
 ---
 
 # Email infrastructure: delivery pattern and rendering rules

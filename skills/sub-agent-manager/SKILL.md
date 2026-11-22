@@ -1,6 +1,6 @@
 ---
 name: sub-agent-manager
-description: 'Run a build as the OPUS MANAGER over fresh SONNET BUILDER sub-agents. Opus does all the thinking (research, design, the plan, slicing, briefs, review, integration); every piece of actual building goes to a brand-new `sonnet-builder` sub-agent (Sonnet, 200K context, auto-compacts) that builds exactly one small slice and stops. Use when the owner says "sub-agent-manager", "manage this with sub-agents", "spin up builders", "use sonnet agents to build this", "you plan, they build", or hands over any sizable job (a UI overhaul, a backend feature, a refactor, a migration, a sweep) and wants it split up and built by sub-agents. Not for one-line fixes: do those yourself.'
+description: "Run a build as the OPUS MANAGER over fresh SONNET BUILDER sub-agents. Opus does all the thinking (research, design, the plan, slicing, briefs, review, integration); every piece of actual building goes to a brand-new `sonnet-builder` sub-agent (Sonnet, 200K context, auto-compacts) that builds exactly one small slice and stops. Use when the owner says \"sub-agent-manager\", \"manage this with sub-agents\", \"spin up builders\", \"use sonnet agents to build this\", \"you plan, they build\", or hands over any sizable job (a UI overhaul, a backend feature, a refactor, a migration, a sweep) and wants it split up and built by sub-agents. Not for one-line fixes: do those yourself."
 ---
 
 # Sub-Agent Manager

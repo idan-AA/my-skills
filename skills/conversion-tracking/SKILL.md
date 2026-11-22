@@ -1,6 +1,7 @@
 ---
 name: conversion-tracking
-description: The Conversion Tracking skill provides end-to-end management of Google Ads conversion measurement infrastructure.
+description: >-
+  The Conversion Tracking skill provides end-to-end management of Google Ads conversion measurement infrastructure.
 ---
 
 # Conversion Tracking

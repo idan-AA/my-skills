@@ -1,6 +1,14 @@
 ---
 name: ui-animation
-description: 'Designs, implements, reviews, debugs, and reverse-engineers UI motion: CSS transitions, keyframes, springs, gestures, drag, easing, timing, framer-motion, and animation curves from screen recordings. Use when asked to "add animations", "make this feel smooth", "review my animations", "add a swipe gesture", "match this easing", "reverse engineer this animation", "extract the animation curve", or "what''s it called when..." to name a motion effect from a vague description. For visual direction use ui-design; for page-level UI audit use ui-audit.'
+description: >-
+  Designs, implements, reviews, debugs, and reverse-engineers UI motion: CSS
+  transitions, keyframes, springs, gestures, drag, easing, timing,
+  framer-motion, and animation curves from screen recordings. Use when asked to
+  "add animations", "make this feel smooth", "review my animations", "add a
+  swipe gesture", "match this easing", "reverse engineer this animation",
+  "extract the animation curve", or "what's it called when..." to name a motion
+  effect from a vague description. For visual direction use ui-design; for
+  page-level UI audit use ui-audit.
 ---
 
 # UI Animation

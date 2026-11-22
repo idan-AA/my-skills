@@ -1,6 +1,6 @@
 ---
 name: acting-as-the-manager
-description: 'How to act as the MANAGER over parallel build agents. Read this whenever I am coordinating multiple agents, assigning work, writing a handoff prompt, reviewing an agent''s returned work, or whenever a master/SOT doc points here. It encodes the owner''s operating model: I hold the master doc + agent ledger, I write the prompts, I do the real live review of returned work, I make small fixes myself and escalate big ones, and the user reads ONLY the chat - never a plan/doc. If my memory was truncated, this is how I remember what the owner expects of me as manager.'
+description: How to act as the MANAGER over parallel build agents. Read this whenever I am coordinating multiple agents, assigning work, writing a handoff prompt, reviewing an agent's returned work, or whenever a master/SOT doc points here. It encodes the owner's operating model: I hold the master doc + agent ledger, I write the prompts, I do the real live review of returned work, I make small fixes myself and escalate big ones, and the user reads ONLY the chat - never a plan/doc. If my memory was truncated, this is how I remember what the owner expects of me as manager.
 ---
 
 # Acting As The Manager

@@ -1,6 +1,15 @@
 ---
 name: iproyal-proxies
-description: How to buy, run, renew and monitor IPRoyal static ISP proxies from code (the reseller API), with the hard-won rules from running one dedicated proxy per WhatsApp number on a self-hosted Evolution API / Baileys stack, plus Bright Data as a second provider and IPQualityScore fraud screening. Read it BEFORE writing any code that buys, renews, tests or assigns a proxy, and before debugging a proxy that "works from my laptop but not from the server". Use when the task involves IPRoyal, the IPRoyal reseller API, buying or renewing proxies, a per-account or per-channel proxy pool, static ISP vs residential vs datacenter choice, proxy fraud scores, auto-renew (auto-extend), a proxy returning 403 or 407, "Invalid proxy", Bright Data zones, or giving a WhatsApp (Evolution, Baileys, WAHA, whatsmeow) or browser-automation session its own IP.
+description: >-
+  How to buy, run, renew and monitor IPRoyal static ISP proxies from code (the reseller API), with
+  the hard-won rules from running one dedicated proxy per WhatsApp number on a self-hosted
+  Evolution API / Baileys stack, plus Bright Data as a second provider and IPQualityScore fraud
+  screening. Read it BEFORE writing any code that buys, renews, tests or assigns a proxy, and
+  before debugging a proxy that "works from my laptop but not from the server". Use when the task
+  involves IPRoyal, the IPRoyal reseller API, buying or renewing proxies, a per-account or
+  per-channel proxy pool, static ISP vs residential vs datacenter choice, proxy fraud scores,
+  auto-renew (auto-extend), a proxy returning 403 or 407, "Invalid proxy", Bright Data zones, or
+  giving a WhatsApp (Evolution, Baileys, WAHA, whatsmeow) or browser-automation session its own IP.
 ---
 
 # IPRoyal proxies: buying, running and renewing them from code

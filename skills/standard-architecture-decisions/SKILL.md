@@ -1,6 +1,6 @@
 ---
 name: standard-architecture-decisions
-description: 'Standard 29 of the engineering standards library: recording architecture decisions. Covers the ADR template, the ADR lifecycle and review process, the ADR index, system architecture documentation, diagramming (C4 levels, diagrams as code), technical debt tracking, API contract documentation, and documentation as code. Read it BEFORE making or changing any significant architectural choice (framework, database, hosting, auth approach, service boundary, major library), and when the user says "ADR", "architecture decision", "why did we choose", "document this decision", "architecture diagram", "C4", "tech debt", "technical debt", or "should we use X or Y".'
+description: "Standard 29 of the engineering standards library: recording architecture decisions. Covers the ADR template, the ADR lifecycle and review process, the ADR index, system architecture documentation, diagramming (C4 levels, diagrams as code), technical debt tracking, API contract documentation, and documentation as code. Read it BEFORE making or changing any significant architectural choice (framework, database, hosting, auth approach, service boundary, major library), and when the user says \"ADR\", \"architecture decision\", \"why did we choose\", \"document this decision\", \"architecture diagram\", \"C4\", \"tech debt\", \"technical debt\", or \"should we use X or Y\"."
 ---
 
 # Architecture Decision Records and system documentation

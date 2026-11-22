@@ -1,6 +1,6 @@
 ---
 name: ai-video-production
-description: 'How to make a film, an ad, a launch video or a short with AI-generated video that people watch to the end and that a demanding client signs off: the method from idea to delivered file, the rules that make it true and human, the hook science with numbers, which model and venue does which job at what price, the prompt shapes per model, how a person on camera talks with an approved voice and nobody else''s mouth moves, the designed layer of words and glass, the sound mix, piece-by-piece rendering, the law on generated people, and every mistake already paid for. Read this before any video work, before buying a frame, before choosing a model, a voice or a venue, and before writing a script for someone else to approve.'
+description: How to make a film, an ad, a launch video or a short with AI-generated video that people watch to the end and that a demanding client signs off: the method from idea to delivered file, the rules that make it true and human, the hook science with numbers, which model and venue does which job at what price, the prompt shapes per model, how a person on camera talks with an approved voice and nobody else's mouth moves, the designed layer of words and glass, the sound mix, piece-by-piece rendering, the law on generated people, and every mistake already paid for. Read this before any video work, before buying a frame, before choosing a model, a voice or a venue, and before writing a script for someone else to approve.
 ---
 
 # AI video production

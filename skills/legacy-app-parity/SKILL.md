@@ -1,6 +1,7 @@
 ---
 name: legacy-app-parity
 description: Make a business's own app a drop-in replacement for an old system they pay for (a dated web app, vendor portal or SaaS) so nobody needs retraining, with the same screens, menus and buttons in the same places, same labels, shortcuts and tab order, and the same behavior (validations, calculations, defaults, search, exports, roles, side effects) under a lighter modern skin. The agent drives the old system in a real browser on a sandbox or limited account, inventories every screen with bundled scripts, records what each control does, maps the data model from network traffic with values stripped, writes a parity spec and gap list, agrees a familiar-but-modern design, rebuilds screen by screen and proves parity with layout diffs and scenario replays. Use whenever someone wants to replace, copy, mimic, clone or switch off existing software, match another app's functionality, keep the same buttons in the same place, or avoid retraining staff, even if they never say parity.
+compatibility: Needs the Chrome DevTools MCP (see the browser-verification skill) and Python 3.9+. Optional REA CLI via npx for reading the old site's JavaScript. Works in Claude Code, Cursor and Codex.
 ---
 
 # Legacy app parity
