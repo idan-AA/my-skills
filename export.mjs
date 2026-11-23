@@ -22,8 +22,18 @@ const SKIP_PREFIXES = [".bucket-"];
 const SKIP_FILES = new Set(["github-board-to-pr/projects.json"]);
 const SKIP_NAMES = new Set([".env", ".env.local", "node_modules", ".DS_Store", "Thumbs.db"]);
 
-// Private details -> placeholders. Order matters (longer first).
-const REDACT = [
+// Private details -> placeholders. The list itself is private, so it lives OUTSIDE this public repo:
+//   ~/.claude/my-skills-redact.json  =  [{ "find": "text" | { "regex": "...", "flags": "gi" }, "replace": "<placeholder>" }]
+// Order matters (longer first). The export refuses to run without it.
+const REDACT_FILE = join(homedir(), ".claude", "my-skills-redact.json");
+if (!existsSync(REDACT_FILE)) {
+  console.error(`Missing ${REDACT_FILE}; refusing to export without the private-details list.`);
+  process.exit(1);
+}
+const REDACT = JSON.parse(readFileSync(REDACT_FILE, "utf8")).map(({ find, replace }) => [
+  typeof find === "string" ? find : new RegExp(find.regex, find.flags),
+  replace,
+]);
 const TEXT = /\.(md|mjs|js|cjs|ts|tsx|json|sql|html|css|ya?ml|txt|sh|ps1|py|toml)$/i;
 
 function skipped(rel, name) {

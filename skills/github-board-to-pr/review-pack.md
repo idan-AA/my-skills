@@ -41,6 +41,10 @@ the code (the `dev-review` skill reads it). It lives OUTSIDE the worktree, so it
     { "file": "shots/01-desktop-unit-page.png", "caption": "Unit page, Floor saved as 4", "width": "desktop" },
     { "file": "shots/02-phone-unit-page.png",  "caption": "Same at 390px", "width": "phone" }
   ],
+  "before": [
+    { "file": "shots/before-01-desktop-unit-page.png", "caption": "Unit page before, no Floor box", "width": "desktop" },
+    { "file": "shots/before-02-phone-unit-page.png",  "caption": "Same at 390px", "width": "phone" }
+  ],
   "visualCheck": "done",
   "reviewer": { "verdict": "approve", "blocking": 0, "shouldFix": 0, "summary": "One line." },
   "openItems": ["Anything not done or worth knowing, plain words. Empty list if none."],
@@ -61,6 +65,8 @@ Field rules:
   units page".
 - `screenshots`: one per screen checked, desktop and phone (about 390px), named in check order. Real data, after the
   action, not the empty page before it. Paths are relative to the pack folder.
+- `before`: the same screens, record and sizes as `screenshots`, taken from the untouched worktree before building, for
+  the client-review skill. Empty for a brand-new screen. Same names with a `before-` prefix.
 - `visualCheck`: `done` | `not-possible: <plain reason>`. Never `done` without the screenshots.
 - `touches`: every file the PR changes (`git diff --name-only origin/<base>`).
 - `dependsOn`: PR numbers that must merge first.

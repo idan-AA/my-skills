@@ -231,4 +231,4 @@ made this session plus what is still waiting.
 - Never edit code in this skill. If the owner wants a quick fix during review, that is a "Send back" with their
   words, or the owner explicitly asks you to fix it in the worktree, in which case follow the repo's commit rules.
 - The page is for the owner. It carries PR numbers, risk and agent notes; it is not for the client (that is the
-  separate client-review skill, still to be built).
+  separate client-review skill).

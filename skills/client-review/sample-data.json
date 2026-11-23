@@ -1,0 +1,33 @@
+{
+  "appName": "Acme Leasing",
+  "clientName": "Acme Property Group",
+  "sender": "your build team",
+  "date": "2026-11-23",
+  "appUrl": "https://app.example.com",
+  "items": [
+    {
+      "key": "floor-field",
+      "title": "Record which floor each unit is on",
+      "status": "live",
+      "asked": "You wanted to keep track of which floor each unit is on, and see it on the units list.",
+      "changed": ["Every unit now has a Floor box, next to Apartment.", "The units list shows the floor under each unit."],
+      "where": "Units, then open any unit",
+      "steps": ["Open any unit.", "Type the floor in the Floor box.", "Press Save. The floor now shows on the units list too."],
+      "note": "Units you already have start with no floor. Fill it in as you go.",
+      "pairs": [
+        { "screen": "Unit page", "size": "desktop", "before": "sample/unit-before-desktop.svg", "after": "sample/unit-after-desktop.svg", "afterNote": "The new Floor box, saved as 4." },
+        { "screen": "Units list", "size": "phone", "before": "sample/list-before-phone.svg", "after": "sample/list-after-phone.svg" }
+      ]
+    },
+    {
+      "key": "applicant-layout",
+      "title": "Arrange the applicant page your way",
+      "status": "soon",
+      "asked": "You asked to move the tabs and boxes on the applicant page so the ones you use most come first.",
+      "changed": ["A new settings page to drag tabs and boxes into the order you want.", "Everyone on your team sees the same layout."],
+      "pairs": [
+        { "screen": "Applicant page settings", "size": "desktop", "before": null, "beforeNote": "There was no way to change this layout before.", "after": "sample/unit-after-desktop.svg" }
+      ]
+    }
+  ]
+}

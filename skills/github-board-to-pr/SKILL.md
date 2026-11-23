@@ -160,7 +160,10 @@ Load the **sub-agent-manager** skill (Skill tool) once and follow it for every c
 - **Visual check and review pack (you, not a builder).** The owner reviews dozens of these later through the `dev-review` skill, and
   the pack is what makes that fast. For every card with a screen: start a dev server from the worktree on a free port (the project's
   `devReview.devCommand` / `portRange`), sign in per `devReview.login`, do the card's job on a real record, and take screenshots at
-  desktop width and about 390px of every screen it touches, after the action. Then write the pack exactly as
+  desktop width and about 390px of every screen it touches, after the action. **Before shots for the client:** before the
+  first builder edits anything, start the server once on the untouched worktree and take the same screens on the same
+  record at the same sizes (the pack's `before` list), so the client-review skill can show before and after without
+  rebuilding old code. Then write the pack exactly as
   `review-pack.md` (next to this file) describes, in `<buildsRoot>/_review/<slug>/`, never inside the worktree. Stop the server.
   No screen at all, or the check was impossible: still write the pack, with `visualCheck: "not-possible: <reason>"`. Update the
   pack again after step 4 with the reviewer verdict.

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__PAGE_TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* A plain update letter: one column, each change reads top to bottom: what you asked, before/after, try it. */
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --ink: #1e1d1a;
+  --muted: #66625a;
+  --line: #e3dfd6;
+  --accent: #2b5d4f;
+  --accent-soft: #e4eee9;
+  --before: #8a5a2b;  --before-soft: #f6ece0;
+  --after: #2b5d4f;   --after-soft: #e4eee9;
+  --soon: #6a5a8c;    --soon-soft: #ece8f4;
+  --frame: #d9d4c8;
+  --shadow: 0 1px 2px rgb(40 30 10 / 6%), 0 8px 24px rgb(40 30 10 / 6%);
+  --f-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --f-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141412; --surface: #1c1c19; --ink: #ecebe6; --muted: #a39f95; --line: #2f2e2a;
+    --accent: #8cc7b4; --accent-soft: #1e302a;
+    --before: #e0b07e; --before-soft: #362a1c; --after: #8cc7b4; --after-soft: #1e302a;
+    --soon: #b9a8e0; --soon-soft: #2a2538; --frame: #3a3934; --shadow: none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141412; --surface: #1c1c19; --ink: #ecebe6; --muted: #a39f95; --line: #2f2e2a;
+  --accent: #8cc7b4; --accent-soft: #1e302a;
+  --before: #e0b07e; --before-soft: #362a1c; --after: #8cc7b4; --after-soft: #1e302a;
+  --soon: #b9a8e0; --soon-soft: #2a2538; --frame: #3a3934; --shadow: none;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--f-body);
+  padding: 40px 16px 80px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; }
+a { color: var(--accent); }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+header.top { display: grid; gap: 10px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.kicker { font-size: 14px; color: var(--muted); letter-spacing: .02em; }
+h1 { font: 600 clamp(34px, 6vw, 52px)/1.05 var(--f-display); margin: 0; text-wrap: balance; }
+.intro { font-size: 19px; max-width: 62ch; margin: 4px 0 0; text-wrap: pretty; }
+.top-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }
+.walk-btn {
+  background: var(--accent); color: var(--bg); border: 0; border-radius: 999px; padding: 10px 20px;
+  font-weight: 600; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; min-height: 44px;
+}
+.walk-btn:hover { filter: brightness(1.08); }
+
+nav.toc { padding: 24px 0 8px; }
+nav.toc h2 { font: 600 14px var(--f-body); color: var(--muted); margin: 0 0 8px; letter-spacing: .02em; }
+nav.toc ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+nav.toc a { text-decoration: none; color: var(--ink); display: flex; gap: 12px; align-items: baseline; }
+nav.toc a:hover .t { text-decoration: underline; }
+nav.toc .num { font: 600 15px var(--f-display); color: var(--muted); min-width: 1.5em; }
+
+.pill { display: inline-block; font: 600 13px/1 var(--f-body); padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+.pill.live { background: var(--after-soft); color: var(--after); }
+.pill.soon { background: var(--soon-soft); color: var(--soon); }
+
+article.change { padding: 48px 0 8px; border-bottom: 1px solid var(--line); scroll-margin-top: 16px; }
+article.change:last-of-type { border-bottom: 0; }
+.change-head { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.change-num { font: 600 15px var(--f-display); color: var(--muted); }
+h2.change-title { font: 600 clamp(26px, 4vw, 34px)/1.15 var(--f-display); margin: 6px 0 0; text-wrap: balance; flex-basis: 100%; }
+.asked { color: var(--muted); font-size: 17px; margin: 10px 0 0; max-width: 65ch; }
+.asked b { color: var(--ink); font-weight: 600; }
+ul.changed { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; max-width: 65ch; }
+ul.changed li { padding-left: 26px; position: relative; }
+ul.changed li::before {
+  content: ""; position: absolute; left: 4px; top: .55em; width: 10px; height: 6px;
+  border-left: 2px solid var(--after); border-bottom: 2px solid var(--after); transform: rotate(-45deg);
+}
+
+.pair { margin-top: 28px; }
+.pair-title { font-weight: 600; margin: 0 0 10px; font-size: 16px; }
+.pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.pair.phone .pair-grid { grid-template-columns: repeat(2, minmax(0, 260px)); }
+.pair.tablet .pair-grid { grid-template-columns: repeat(2, minmax(0, 380px)); }
+.pair.tablet .shot-btn { border-radius: 14px; }
+.behind { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); }
+.behind h2 { font: 600 24px var(--f-display); margin: 0 0 10px; }
+.behind ul { margin: 0; padding-left: 22px; display: grid; gap: 6px; max-width: 70ch; }
+figure.shot { margin: 0; display: grid; gap: 8px; }
+.shot-label { display: flex; gap: 8px; align-items: center; font: 600 13px var(--f-body); letter-spacing: .06em; text-transform: uppercase; }
+.shot-label .dot { width: 9px; height: 9px; border-radius: 50%; }
+.before .shot-label { color: var(--before); } .before .dot { background: var(--before); }
+.after .shot-label { color: var(--after); } .after .dot { background: var(--after); }
+.shot-btn {
+  all: unset; cursor: zoom-in; display: block; border-radius: 10px; overflow: hidden; background: var(--surface);
+  border: 1px solid var(--frame); box-shadow: var(--shadow);
+}
+.after .shot-btn { border-color: color-mix(in srgb, var(--after) 45%, var(--frame)); }
+.shot-btn img { display: block; width: 100%; height: auto; }
+.pair.phone .shot-btn { border-radius: 18px; }
+.no-before {
+  border: 1px dashed var(--frame); border-radius: 10px; background: var(--before-soft); color: var(--ink);
+  padding: 22px; display: grid; place-items: center; text-align: center; min-height: 160px; font-size: 16px;
+}
+figcaption { font-size: 14.5px; color: var(--muted); }
+
+.try { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; box-shadow: var(--shadow); max-width: 720px; }
+.try h3 { font: 600 20px var(--f-display); margin: 0 0 4px; }
+.try .where { color: var(--muted); margin: 0 0 10px; }
+.try ol { margin: 0; padding-left: 22px; display: grid; gap: 4px; }
+.try .open { display: inline-block; margin-top: 14px; font-weight: 600; }
+.try.soon-box { background: var(--soon-soft); border-color: transparent; box-shadow: none; }
+.note { margin: 16px 0 0; padding: 12px 16px; border-left: 3px solid var(--before); background: var(--before-soft); border-radius: 0 8px 8px 0; max-width: 720px; font-size: 16px; }
+
+footer.end { margin-top: 48px; color: var(--muted); font-size: 15px; }
+
+/* Lightbox */
+dialog.zoom { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
+dialog.zoom::backdrop { background: rgb(10 10 8 / 82%); }
+dialog.zoom img { display: block; max-width: 96vw; max-height: 88vh; width: auto; height: auto; border-radius: 8px; }
+dialog.zoom p { color: #f2f0ea; margin: 8px 0 0; text-align: center; font-size: 15px; }
+dialog.zoom .close { position: fixed; top: 12px; right: 12px; }
+
+/* Walk-through */
+.walk { position: fixed; inset: 0; background: var(--bg); z-index: 10; display: none; grid-template-rows: auto 1fr auto; }
+.walk.on { display: grid; }
+body.walking { overflow: hidden; }
+.walk-top, .walk-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; }
+.walk-top { border-bottom: 1px solid var(--line); }
+.walk-bar { border-top: 1px solid var(--line); }
+.walk-body { overflow: auto; padding: 24px 20px 32px; }
+.walk-body .wrap { max-width: 1280px; }
+.walk-body article.change { padding-top: 0; border: 0; }
+.walk .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+.ghost {
+  background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 999px;
+  padding: 8px 18px; cursor: pointer; min-height: 44px;
+}
+.ghost:hover { border-color: var(--ink); }
+.ghost:disabled { opacity: .4; cursor: default; }
+.close {
+  background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 999px;
+  padding: 8px 16px; cursor: pointer; min-height: 40px;
+}
+
+@media (max-width: 720px) {
+  body { font-size: 16px; padding-top: 28px; }
+  .pair-grid { grid-template-columns: 1fr; gap: 20px; }
+  .pair.phone .pair-grid, .pair.tablet .pair-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pair.phone .shot-btn { border-radius: 12px; }
+  article.change { padding-top: 36px; }
+  .try { padding: 16px; }
+  .walk-top, .walk-bar { padding: 10px 16px; }
+  .walk-body { padding: 18px 16px 24px; }
+}
+@media print {
+  .walk-btn, .walk, dialog { display: none !important; }
+  body { background: #fff; padding: 0; }
+  article.change { break-inside: avoid-page; }
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="page"></div>
+
+<div class="walk" id="walk" role="dialog" aria-modal="true" aria-label="Walk through the changes">
+  <div class="walk-top">
+    <span class="count" id="walk-count"></span>
+    <button class="close" id="walk-exit" type="button">Close</button>
+  </div>
+  <div class="walk-body" id="walk-body"><div class="wrap" id="walk-slot"></div></div>
+  <div class="walk-bar">
+    <button class="ghost" id="walk-prev" type="button">&larr; Back</button>
+    <button class="walk-btn" id="walk-next" type="button">Next &rarr;</button>
+  </div>
+</div>
+
+<dialog class="zoom" id="zoom">
+  <button class="close" type="button" id="zoom-close">Close</button>
+  <img id="zoom-img" alt="">
+  <p id="zoom-cap"></p>
+</dialog>
+
+<script id="client-data" type="application/json">__CLIENT_DATA__</script>
+<script>
+(() => {
+  const data = JSON.parse(document.getElementById("client-data").textContent);
+  const items = data.items || [];
+  const el = (tag, attrs = {}, ...kids) => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v == null || v === false) continue;
+      if (k === "class") n.className = v; else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v);
+    }
+    for (const kid of kids.flat()) if (kid != null && kid !== false) n.append(kid instanceof Node ? kid : document.createTextNode(String(kid)));
+    return n;
+  };
+  const niceDate = (d) => {
+    try { return new Date(d + (d.length === 10 ? "T12:00:00" : "")).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }); }
+    catch { return d; }
+  };
+
+  const zoom = document.getElementById("zoom");
+  const openZoom = (src, cap) => {
+    document.getElementById("zoom-img").src = src;
+    document.getElementById("zoom-img").alt = cap;
+    document.getElementById("zoom-cap").textContent = cap;
+    zoom.showModal();
+  };
+  document.getElementById("zoom-close").addEventListener("click", () => zoom.close());
+  zoom.addEventListener("click", (e) => { if (e.target === zoom) zoom.close(); });
+
+  const shot = (kind, src, note, screen) => {
+    const label = el("div", { class: "shot-label" }, el("span", { class: "dot", "aria-hidden": "true" }), kind === "before" ? "Before" : "After");
+    const cap = `${kind === "before" ? "Before" : "After"}: ${screen}`;
+    const body = src
+      ? el("button", { class: "shot-btn", type: "button", "aria-label": `Enlarge ${cap}`, onclick: () => openZoom(src, note ? `${cap}. ${note}` : cap) },
+          el("img", { src, alt: note ? `${cap}. ${note}` : cap, loading: "lazy" }))
+      : el("div", { class: "no-before" }, note || "Nothing to show here before.");
+    return el("figure", { class: `shot ${kind}` }, label, body, src && note ? el("figcaption", {}, note) : null);
+  };
+
+  const change = (it, i, opts = {}) => {
+    const live = it.status === "live";
+    const a = el("article", { class: "change", id: opts.walk ? null : `change-${i + 1}` },
+      el("div", { class: "change-head" },
+        opts.walk ? null : el("span", { class: "change-num" }, `${i + 1} of ${items.length}`),
+        el("span", { class: `pill ${live ? "live" : "soon"}` }, live ? "Ready to use" : "Coming soon"),
+        el("h2", { class: "change-title" }, it.title)),
+      el("p", { class: "asked" }, el("b", {}, "You asked: "), it.asked),
+      el("ul", { class: "changed" }, (it.changed || []).map((t) => el("li", {}, t))),
+      (it.pairs || []).map((p) => el("section", { class: `pair ${p.size === "desktop" ? "" : p.size}` },
+        el("p", { class: "pair-title" }, p.screen + (p.size === "phone" ? " (on a phone)" : p.size === "tablet" ? " (on a tablet)" : "")),
+        el("div", { class: "pair-grid" },
+          shot("before", p.before, p.beforeNote, p.screen),
+          shot("after", p.after, p.afterNote, p.screen)))),
+      live
+        ? el("div", { class: "try" },
+            el("h3", {}, "Try it"),
+            it.where ? el("p", { class: "where" }, `Where: ${it.where}`) : null,
+            el("ol", {}, (it.steps || []).map((s) => el("li", {}, s))),
+            data.appUrl && !opts.walk ? el("a", { class: "open", href: data.appUrl, target: "_blank", rel: "noopener" }, `Open ${data.appName}`) : null)
+        : el("div", { class: "try soon-box" }, el("h3", {}, "Coming soon"),
+            el("p", { class: "where" }, "This is finished and will be in your account with the next update. We will let you know.")),
+      it.note ? el("p", { class: "note" }, it.note) : null);
+    return a;
+  };
+
+  const page = document.getElementById("page");
+  const liveCount = items.filter((i) => i.status === "live").length;
+  page.append(...[
+    el("header", { class: "top" },
+      el("div", { class: "kicker" }, [niceDate(data.date), data.clientName ? `Prepared for ${data.clientName}` : null].filter(Boolean).join("  ·  ")),
+      el("h1", {}, `What's new in ${data.appName}`),
+      el("p", { class: "intro" }, data.intro ||
+        `${items.length === 1 ? "One change" : `${items.length} changes`} you asked for${liveCount === items.length ? ", all ready to use" : ""}. Each one shows the screen before and after.`),
+      el("div", { class: "top-row" },
+        el("button", { class: "walk-btn", type: "button", onclick: () => walk(0) }, "Walk through", el("span", { "aria-hidden": "true" }, "→")))),
+    items.length > 1 ? el("nav", { class: "toc", "aria-label": "Changes" },
+      el("h2", {}, "In this update"),
+      el("ol", {}, items.map((it, i) => el("li", {}, el("a", { href: `#change-${i + 1}` },
+        el("span", { class: "num" }, i + 1), el("span", { class: "t" }, it.title),
+        it.status === "soon" && liveCount > 0 ? el("span", { class: "pill soon" }, "Coming soon") : null))))) : null,
+    items.map((it, i) => change(it, i)),
+    data.behind?.length ? el("section", { class: "behind" }, el("h2", {}, "Also done"),
+      el("ul", {}, data.behind.map((t) => el("li", {}, t)))) : null,
+    el("footer", { class: "end" }, data.sender ? `From ${data.sender}. Questions? Just reply and ask.` : "Questions? Just reply and ask.")].flat().filter(Boolean));
+
+  // Walk-through: one change per screen.
+  const w = document.getElementById("walk"), slot = document.getElementById("walk-slot");
+  const prev = document.getElementById("walk-prev"), next = document.getElementById("walk-next");
+  let at = 0, lastFocus = null;
+  const show = () => {
+    slot.replaceChildren(change(items[at], at, { walk: true }));
+    document.getElementById("walk-body").scrollTop = 0;
+    document.getElementById("walk-count").textContent = `${at + 1} of ${items.length}`;
+    prev.disabled = at === 0;
+    next.textContent = at === items.length - 1 ? "Finish" : "Next →";
+  };
+  const walk = (i) => { lastFocus = document.activeElement; at = i; w.classList.add("on"); document.body.classList.add("walking"); show(); next.focus(); };
+  const exit = () => { w.classList.remove("on"); document.body.classList.remove("walking"); lastFocus?.focus(); };
+  next.addEventListener("click", () => { if (at < items.length - 1) { at++; show(); } else exit(); });
+  prev.addEventListener("click", () => { if (at > 0) { at--; show(); } });
+  document.getElementById("walk-exit").addEventListener("click", exit);
+  document.addEventListener("keydown", (e) => {
+    if (!w.classList.contains("on") || zoom.open) return;
+    if (e.key === "ArrowRight") next.click();
+    else if (e.key === "ArrowLeft") prev.click();
+    else if (e.key === "Escape") exit();
+  });
+})();
+</script>
+</body>
+</html>
